@@ -1,0 +1,330 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="FancyBoxHeadFooter.master.cs" Inherits="Admin_FancyBoxHeadFooter" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="X-UA-Compatible" content="IE=edge; charset=utf-8" />
+<title>後台管理系統</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+<!-- Bootstrap 3.3.6 -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+<!-- Select2 -->
+<link rel="stylesheet" href="plugins/select2/select2.min.css" />
+<!-- Theme style -->
+<link rel="stylesheet" href="dist/css/AdminLTE.min.css" />
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+folder instead of downloading all of them to reduce the load. -->
+<link rel="stylesheet" href="dist/css/skins/skin-blue.min.css" />
+<!-- iCheck for checkboxes and radio inputs -->
+<link rel="stylesheet" href="plugins/iCheck/all.css" />
+<!-- Morris chart -->
+<link rel="stylesheet" href="plugins/morris/morris.css" />
+<!-- jvectormap -->
+<link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" />
+<!-- datatable -->
+<link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css" />
+<!-- Date Picker -->
+<link rel="stylesheet" href="plugins/datepicker/datepicker3.css" />
+<!-- Daterange picker -->
+<link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css" />
+<!-- Bootstrap time Picker -->
+<link rel="stylesheet" href="plugins/timepicker/bootstrap-timepicker.min.css" />
+    <link href="plugins/twcityselector/app.css" rel="stylesheet" />
+<link href="../Content/bootstrap-fileinput/css/fileinput.css" rel="stylesheet" />
+<link href="../Content/jquery.fancybox.css" rel="stylesheet" />
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.6 -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- validator -->
+<script src="bootstrap/js/validator.min.js"></script>
+<!-- Select2 -->
+<script src="plugins/select2/select2.full.min.js"></script>
+<!-- Morris.js charts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="plugins/morris/morris.min.js"></script>
+<!-- Sparkline -->
+<script src="plugins/sparkline/jquery.sparkline.min.js"></script>
+<!-- jvectormap -->
+<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+
+<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<!-- FancyBOx -->
+<script src="../Scripts/jquery.fancybox.pack.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="plugins/knob/jquery.knob.js"></script>
+<!-- daterangepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- datepicker -->
+<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="plugins/datepicker/locales/bootstrap-datepicker.zh-TW.js"></script>
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="plugins/iCheck/icheck.min.js"></script>
+<!-- FastClick -->
+<script src="plugins/fastclick/fastclick.js"></script>
+<!-- Slimscroll -->
+<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!--fileinput -->
+<script src="../Scripts/fileinput.js"></script>
+<script src="../Scripts/locales/zh-TW.js"></script>
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+
+        $('input[type="checkbox"], input[type="radio"]').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
+        });
+
+        var opt = {
+            "oLanguage": {
+                "sProcessing": "處理中...",
+                "sLengthMenu": "顯示 _MENU_ 項結果",
+                "sZeroRecords": "沒有匹配結果",
+                "sInfo": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                "sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+                "sInfoFiltered": "(從 _MAX_ 項結果過濾)",
+                "sSearch": "搜索:",
+                "oPaginate": {
+                    "sFirst": "首頁",
+                    "sPrevious": "上頁",
+                    "sNext": "下頁",
+                    "sLast": "尾頁",
+                }
+            },
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": true
+        };
+        $('.dataTables').DataTable(opt);
+        //Date picker
+
+        //將預設語系設定為中文
+        $('.datepicker').datepicker({
+            autoclose: true,
+            dateFormat: 'yy/mm/dd',
+            language: 'zh-TW'
+        });
+
+        $('.resultList').click(function () {
+            var isreload = $(this).data('reload');
+            var hrf = $(this).data('href');
+            var id = $(this).data('id');
+            if (typeof id != "undefined") {
+                hrf = hrf + "?id=" + id;
+            }
+            $.fancybox.open({
+                href: hrf,
+                type: 'iframe',
+                overlayShow: true,
+                padding: 5,
+                scrolling: 'auto',
+                fitToView: true,
+                autoScale: true,
+                closeClick: false,
+                onUpdate: function () {
+                    $("iframe.fancybox-iframe");
+                },
+                afterClose: function () {
+                    if (isreload) {
+                        location.reload();
+                        return;
+                    }
+                }
+            });
+        });
+
+        $('.resultListSer').click(function () {
+        var isreload = $(this).data('reload');
+        var hrf = $(this).data('href');
+        var ono = $(this).data('ono');
+        var cid = $(this).data('cid');
+        var otype = $(this).data('otype');
+        var str = "";
+        if (typeof ono != "undefined") {
+            str = "ono=" + ono;
+        }
+        if (typeof cid != "undefined") {
+            if (str != "") {
+                str += "&";
+            }
+            str += "cid=" + cid;
+        }
+        if (typeof otype != "undefined") {
+            if (str != "") {
+                str += "&";
+            }
+            str += "otype=" + otype;
+        }
+        if (str != "") {
+            hrf = hrf + "?" + str;
+        }
+        $.fancybox.open({
+            href: hrf,
+            type: 'iframe',
+            overlayShow: true,
+            padding: 20,
+            scrolling: 'auto',
+            fitToView: true,
+            helpers: {
+                overlay: { closeClick: false }
+            },
+            autoScale: true,
+            closeClick: false,
+            showCloseButton: true,
+            onUpdate: function () {
+                $("iframe.fancybox-iframe");
+            },
+            afterClose: function () {
+                if (isreload) {
+                    location.reload();
+                    return;
+                }
+            }
+        });
+    });
+    });
+</script>
+<script>
+    function getFiles(type, cName) {
+        var files = [];
+        $.ajax({
+            url: "FileGetHandler.ashx?files=" + $('#' + cName).val(),
+            dataType: "json",
+            type: 'POST',
+            async: false,
+            success: function (data) {
+                if (type == "initialPreview") {
+                    $.each(data.initialPreview, function (i, v) {
+                        files.push(v);
+                    });
+                }
+                if (type == "initialPreviewConfig") {
+                    $.each(data.initialPreviewConfig, function (i, v) {
+                        files.push(v);
+                    });
+                }
+
+            }
+        });
+        return files;
+    };
+    $(document).ready(function () {
+        $(".Sinputfiles").each(function () {
+            $(this).next('input').hide();
+            var ctr = $(this).next('input').attr('id');
+            $(this).fileinput(
+                {
+                    language: 'zh-TW', //设置语言
+                    uploadUrl: "FileUploadHandler.ashx",
+                    uploadAsync: false,
+                    overwriteInitial: true,
+                    showUpload: false, //是否顯示上傳按鈕
+                    showRemove: false,//是否顯示移除按鈕
+                    maxFileCount: 1, //表示允許同時上傳的最大文件個數
+                    maxFileSize: 0,//單位為kb,0表示不受限制
+                    initialPreviewAsData: true, //識別是否只發送預覽數據,而不是原始標記  
+                    initialPreview: getFiles('initialPreview', ctr),
+                    initialPreviewConfig: getFiles('initialPreviewConfig', ctr),
+                    deleteUrl: "FileDeleteHandler.ashx",
+                    allowedFileExtensions: ['jpg', 'gif', 'png'], // 接收的文件後綴 
+                    uploadExtraData: function () {
+                        return {
+                            key: $('#' + ctr).val()
+                        };
+                    },
+                    previewFileIcon: "<i class='glyphicon glyphicon-king'>"
+                }).on("fileuploaded", function (event, data, previewId, index) {
+                var img = data.response.initialPreviewConfig[0];
+                $('#' + ctr).val(img.caption);
+            }).on('filepredelete', function (event, data) {
+                var words = $('#' + ctr).val().split(',');
+                words = jQuery.grep(words,
+                    function (value) {
+                        return value != data;
+                    });
+                $('#' + ctr).val(words);
+            });
+        });
+        $(".Minputfiles").each(function () {
+            $(this).next('input').hide();
+            var ctr = $(this).next('input').attr('id');
+            $(this).fileinput(
+                {
+                    language: 'zh-TW', //设置语言
+                    uploadUrl: "FileUploadHandler.ashx",
+                    uploadAsync: false,
+                    overwriteInitial: false,
+                    showUpload: false, //是否顯示上傳按鈕
+                    showRemove: false,//是否顯示移除按鈕
+                    maxFileCount: 3, //表示允許同時上傳的最大文件個數
+                    maxFileSize: 0,//單位為kb,0表示不受限制
+                    initialPreviewAsData: true, //識別是否只發送預覽數據,而不是原始標記  
+                    initialPreview: getFiles('initialPreview', ctr),
+                    initialPreviewConfig: getFiles('initialPreviewConfig', ctr),
+                    deleteUrl: "FileDeleteHandler.ashx",
+                    allowedFileExtensions: ['jpg', 'gif', 'png'], // 接收的文件後綴 
+                    uploadExtraData: function () {
+                        return {
+                            key: $('#' + ctr).val()
+                        };
+                    },
+                    previewFileIcon: "<i class='glyphicon glyphicon-king'>"
+                }).on("fileuploaded", function (event, data, previewId, index) {
+                var img = data.response.initialPreviewConfig[0];
+                var words = $('#' + ctr).val().split(',');
+                words.push(img.caption);
+                $('#' + ctr).val(words.join(','));
+            }).on('filepredelete', function (event, data) {
+                var words = $('#' + ctr).val().split(',');
+                words = jQuery.grep(words,
+                    function (value) {
+                        return value != data;
+                    });
+                $('#' + ctr).val(words);
+            });
+        });
+    });
+</script>
+<!-- AdminLTE App -->
+<script src="dist/js/app.min.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<form id="form1" runat="server" data-toggle="validator">
+    <div class="wrapper" style="background-color: white">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+</form>
+</body>
+</html>

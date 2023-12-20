@@ -1,0 +1,253 @@
+@charset 'UTF-8';
+/* Slider */
+.slick-loading .slick-list
+{
+    background: #fff url('./ajax-loader.gif') center center no-repeat;
+}
+
+/* Icons */
+@font-face
+{
+    font-family: 'slick';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url('./fonts/slick.eot');
+    src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg');
+}
+/* Arrows */
+.slick-prev,
+.slick-next
+{
+    font-size: 0;
+    line-height: 0;
+
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    width: 65px;
+    height: 80px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+
+    color: transparent;
+    border: none;
+    outline: none;
+    width: 74px;
+    height: 77px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 12px;
+    z-index: 1;
+}
+.slick-prev:hover,
+.slick-next:hover
+{
+    color: transparent;
+    outline: none;
+    background: rgba(255,255,255,0.25);
+}
+.slick-prev:hover:before,
+.slick-next:hover:before
+{
+    opacity: 0.8;
+}
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before
+{
+    opacity: .25;
+}
+
+.slick-prev:before,
+.slick-next:before
+{
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+
+    opacity: 1;
+    color: white;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev
+{
+    left: 16px;
+    padding-left: 14px; 
+}
+[dir='rtl'] .slick-prev
+{
+    right: -25px;
+    left: auto;
+}
+.slick-prev:before
+{
+    content: '';
+}
+[dir='rtl'] .slick-prev:before
+{
+    content: '→';
+}
+
+.slick-next
+{
+    right: 16px;
+    padding-right: 14px;    
+}
+[dir='rtl'] .slick-next
+{
+    right: auto;
+    left: -25px;
+}
+.slick-next:before
+{
+    content: '';
+}
+[dir='rtl'] .slick-next:before
+{
+    content: '←';
+}
+
+
+.slick-next:before, .slick-prev:before{
+    display: inline-block;  
+    border-right: 5px solid #fff;
+    border-bottom: 5px solid #fff;
+    width: 28px;    
+    height: 28px; 
+    border-radius: 4px;
+}
+.slick-next:before { 
+  transform: rotate(-45deg);  
+  
+} 
+
+.slick-prev:before {  
+  transform: rotate(135deg);  
+} 
+
+
+
+
+
+
+
+/* Dots */
+.slick-dotted.slick-slider
+{
+    margin-bottom: 45px;
+}
+
+.slick-dots
+{
+    position: absolute;
+    bottom: -25px;
+
+    display: block;
+
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+
+    text-align: center;
+}
+.slick-dots li
+{
+    position: relative;
+
+    display: inline-block;
+
+    margin: 0 0;
+    padding: 0;
+
+    cursor: pointer;
+}
+.slick-dots li button
+{
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 65px;
+    height: 8px;
+    cursor: pointer;
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+    border-radius: 10px;
+    margin: 0 4px;
+}
+.slick-dots li button:hover,
+.slick-dots li button:focus
+{
+    outline: none; outline: 3px dotted green;
+}
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before
+{
+    opacity: 1;
+}
+.slick-dots li button:before
+{
+    font-family: 'slick';
+    font-size: 16px;
+    line-height: 20px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 65px;
+    height: 8px;
+    border-radius: 50px;
+    background: #fff;
+    content: '';
+    text-align: center;
+
+    opacity: 1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before
+{
+    opacity: 1;
+    background: #000;
+}
+
+
+
+
+
+@media screen and (max-width: 500px) {
+
+    .slick-prev, .slick-next{
+        width: 35px;
+        height: 36px;
+    }
+    
+    .slick-next:before, .slick-prev:before {
+        border-right: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        width: 16px;
+        height: 16px;
+        border-radius: 2px;
+    }
+    .slick-next{ padding-right: 9px; }
+    .slick-prev{ padding-left: 8px; }
+        
+
+    .slick-dots li button, .slick-dots li button:before {       
+        width: 34px;
+        height: 5px;
+    }
+}

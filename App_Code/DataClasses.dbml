@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ChiefChefDB" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=114.35.119.247;Initial Catalog=ChiefChefDB;User ID=vic" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.e_Employee_RolePremission_Mapping" Member="e_Employee_RolePremission_Mapping">
+    <Type Name="e_Employee_RolePremission_Mapping">
+      <Column Name="PermissionId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="e_EmployeePermission_e_Employee_RolePremission_Mapping" Member="e_EmployeePermission" ThisKey="PermissionId" OtherKey="EmployeePermissionId" Type="e_EmployeePermission" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="e_EmployeeRole_e_Employee_RolePremission_Mapping" Member="e_EmployeeRole" ThisKey="RoleId" OtherKey="EmployeeRoleId" Type="e_EmployeeRole" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.e_EmployeePermission" Member="e_EmployeePermission">
+    <Type Name="e_EmployeePermission">
+      <Column Name="EmployeePermissionId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Links" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Area" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Icon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Sort" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Deleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="e_EmployeePermission_e_Employee_RolePremission_Mapping" Member="e_Employee_RolePremission_Mapping" ThisKey="EmployeePermissionId" OtherKey="PermissionId" Type="e_Employee_RolePremission_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.e_EmployeeRole" Member="e_EmployeeRole">
+    <Type Name="e_EmployeeRole">
+      <Column Name="EmployeeRoleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="IsSystemRole" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="e_EmployeeRole_e_Employee_RolePremission_Mapping" Member="e_Employee_RolePremission_Mapping" ThisKey="EmployeeRoleId" OtherKey="RoleId" Type="e_Employee_RolePremission_Mapping" />
+      <Association Name="e_EmployeeRole_e_EmployeeRole_Mapping" Member="e_EmployeeRole_Mapping" ThisKey="EmployeeRoleId" OtherKey="RoleId" Type="e_EmployeeRole_Mapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.e_EmployeeRole_Mapping" Member="e_EmployeeRole_Mapping">
+    <Type Name="e_EmployeeRole_Mapping">
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="e_EmployeeRole_e_EmployeeRole_Mapping" Member="e_EmployeeRole" ThisKey="RoleId" OtherKey="EmployeeRoleId" Type="e_EmployeeRole" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="e_Employees_e_EmployeeRole_Mapping" Member="e_Employees" ThisKey="EmployeeId" OtherKey="EmployeeId" Type="e_Employees" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.s_SMTPInfo" Member="s_SMTPInfo">
+    <Type Name="s_SMTPInfo">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Account" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Server" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Port" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsSSL" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SinglePage" Member="SinglePage">
+    <Type Name="SinglePage">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Contents" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SystemSetting" Member="SystemSetting">
+    <Type Name="SystemSetting">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Contents" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Banner" Member="Banner">
+    <Type Name="Banner">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PcPic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MobilePic" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UrlLink" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Sort" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ViewCount" Member="ViewCount">
+    <Type Name="ViewCount">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ViewDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Counts" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ActivityContactUser" Member="ActivityContactUser">
+    <Type Name="ActivityContactUser">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ActivityId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ContactName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ContactPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Activity_ActivityContactUser" Member="Activity" ThisKey="ActivityId" OtherKey="Id" Type="Activity" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.News" Member="News">
+    <Type Name="News">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Summary" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MainPic" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Contents" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VideoUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Highlights" Member="Highlights">
+    <Type Name="Highlights">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Summary" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MainPic" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Contents" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VideoUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompetitionGroup" Member="CompetitionGroup">
+    <Type Name="CompetitionGroup">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Account" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LoginPass" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="County" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CountyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TeamTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ContestCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="WorkFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AuthorizeFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TeachingFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RepresentativeConsent" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SignupStatus" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ReturnReason" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="ResetToken" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="ExpireDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="CompetitionGroup_CompetitionGroupReturnLog" Member="CompetitionGroupReturnLog" ThisKey="Id" OtherKey="CompetitionGroupId" Type="CompetitionGroupReturnLog" />
+      <Association Name="CompetitionGroup_CompetitionGroupMember" Member="CompetitionGroupMember" ThisKey="Id" OtherKey="CompetitionId" Type="CompetitionGroupMember" />
+      <Association Name="CompetitionGroup_FinalCompetition" Member="FinalCompetition" ThisKey="Id" OtherKey="CompetitionId" Type="FinalCompetition" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompetitionGroupReturnLog" Member="CompetitionGroupReturnLog">
+    <Type Name="CompetitionGroupReturnLog">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CompetitionGroupId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Contents" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreateUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="CompetitionGroup_CompetitionGroupReturnLog" Member="CompetitionGroup" ThisKey="CompetitionGroupId" OtherKey="Id" Type="CompetitionGroup" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.e_Employees" Member="e_Employees">
+    <Type Name="e_Employees">
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Account" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="TitleOfCourtesy" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HireDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="Province" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Area" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="PostalCode" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="HomePhone" Type="System.String" DbType="NVarChar(24)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="Extension" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ReportsTo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PhotoPath" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatUser" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ModifyUser" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="PwdChangeDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PwdChangeLog" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="e_Employees_e_EmployeeRole_Mapping" Member="e_EmployeeRole_Mapping" ThisKey="EmployeeId" OtherKey="EmployeeId" Type="e_EmployeeRole_Mapping" />
+      <Association Name="e_Employees_e_Employees" Member="e_Employees2" ThisKey="EmployeeId" OtherKey="ReportsTo" Type="e_Employees" />
+      <Association Name="e_Employees_e_Employees" Member="e_Employees1" ThisKey="ReportsTo" OtherKey="EmployeeId" Type="e_Employees" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SysLog" Member="SysLog">
+    <Type Name="SysLog">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Action" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Account" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="IPsource" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsSuccess" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompetitionGroupMember" Member="CompetitionGroupMember">
+    <Type Name="CompetitionGroupMember">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CompetitionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IdentityNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Mail" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="UnitName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="JobTitle" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsLeader" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SignArea" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="CompetitionGroup_CompetitionGroupMember" Member="CompetitionGroup" ThisKey="CompetitionId" OtherKey="Id" Type="CompetitionGroup" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Activity" Member="Activity">
+    <Type Name="Activity">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="County" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CountyName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SignupStartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SignupEndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IntroduceFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OdtFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PreliminaryAwardFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CommitteeList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Pics" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FileUploadDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Activity_ActivityContactUser" Member="ActivityContactUser" ThisKey="Id" OtherKey="ActivityId" Type="ActivityContactUser" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FinalCompetition" Member="FinalCompetition">
+    <Type Name="FinalCompetition">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CompetitionId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="County" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CountySort" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="WorkFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="AuthorizeFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TeachingFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TeachingVideoFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IntroduceFile" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="RepresentativeConsent" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreateUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ModifyUser" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="CompetitionGroup_FinalCompetition" Member="CompetitionGroup" ThisKey="CompetitionId" OtherKey="Id" Type="CompetitionGroup" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

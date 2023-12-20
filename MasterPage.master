@@ -1,0 +1,100 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <title>首惜廚師甄選活動</title>
+    <!--layout-->
+    <link href="css/layout.css" rel="stylesheet">
+    <!--jquery-->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!--客製JS-->
+    <script type="text/javascript" src="js/common.js"></script>
+    <asp:Literal ID="litGoogleAnalytics" runat="server"></asp:Literal>
+    <asp:Literal ID="litMeta" runat="server"></asp:Literal>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <noscript class="noscript">您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript狀態</noscript>
+        <a href="#content" id="gotocenter" title="移至主要內容" class="sr-only sr-only-focusable">跳到主要內容</a>
+        <header class="header">
+            <a href="#U" title="上方功能區塊" id="AU" accesskey="U" name="U" class="au accesskey">:::</a>
+            <h1 class="logo-area">
+                <a href="index.aspx" title="回首頁">
+                    <div class="logo-circle">
+                        <img class="logo" src="images/logo.png" alt="首惜廚師">
+                    </div>
+                    <img class="logo-system" src="images/title.png" alt="首惜廚師甄選活動">
+                </a>
+            </h1>
+            <ul class="menu">
+                <li><a href="Sitemap.aspx">網站導覽</a></li>
+                <li><a href="Preliminary.aspx">各縣市初賽</a></li>
+                <asp:PlaceHolder ID="PlaceHolder1" runat="server">
+                <li><a href="Login.aspx">參賽者登入</a></li>
+                </asp:PlaceHolder>
+                <asp:PlaceHolder ID="PlaceHolder2" runat="server">
+                <li><a href="Logout.aspx">登出</a></li>
+                </asp:PlaceHolder>
+                <li><a href="Final.aspx">全國決賽</a></li>
+                <li><a href="WorkShop.aspx">工作坊</a></li>
+                <li><a href="News.aspx">最新消息</a></li>
+                <li><a href="Highlights.aspx">精彩花絮</a></li>
+                <li><a href="Contact.aspx">聯絡我們</a></li>
+                <li><a href="index.aspx">回首頁</a></li>
+                <li><a href="Identity/login.aspx" target="_blank" class="btn-link-login" title="點擊後另開新分頁">環保局登入</a></li>
+            </ul>
+            <a href="javascript:void(0)" class="m-hamburger">手機版選單</a>
+        </header>
+        <!--行動版選單-->
+        <ul class="mobile-menu">
+            <li><a href="Sitemap.aspx"><span>網站導覽</span></a></li>
+            <li><a href="Preliminary.aspx"><span>各縣市初賽</span></a></li>
+                <asp:PlaceHolder ID="PlaceHolder3" runat="server">
+                <li><a href="Login.aspx">參賽者登入</a></li>
+                </asp:PlaceHolder>
+                <asp:PlaceHolder ID="PlaceHolder4" runat="server">
+                <li><a href="Logout.aspx">登出</a></li>
+                </asp:PlaceHolder>
+            <li><a href="Final.aspx"><span>全國決賽</span></a></li>
+            <li><a href="WorkShop.aspx"><span>工作坊</span></a></li>
+            <li><a href="News.aspx"><span>最新消息</span></a></li>
+            <li><a href="Highlights.aspx"><span>精彩花絮</span></a></li>
+            <li><a href="Contact.aspx"><span>聯絡我們</span></a></li>
+            <li><a href="index.aspx"><span>回首頁</span></a></li>
+            <li><a href="Identity/login.aspx" target="_blank" class="btn-link-login" title="點擊後另開新分頁"><span>環保局登入</span></a></li>
+        </ul>
+        <!--//行動版選單-->
+        <div class="container">
+            <!-------用container包住，讓footer在最下面------>
+            <main class="main">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </main>
+            <footer class="footer">
+                <a href="#Z" title="下方功能區塊" id="AZ" accesskey="Z" name="Z" class="accesskey">:::</a>
+                <div class="wrapper">
+                    <p class="foot-department">
+                        <span>主辦單位：行政院環境保護署</span><span class="foot-dot">．</span><span>委辦單位：財團法人台灣產業服務基金會</span>
+                    </p>
+                    <p class="foot-contact">
+                        <span>聯絡信箱：ftiscc000@gmail.com</span><span class="foot-dot">．</span><span>連絡電話：惜食料理食譜組 02-7704-5135 / </span><span>惜食教案組 02-7704-5145 / 02-7704-5127</span>
+                    </p>
+                </div>
+            </footer>
+        </div>
+        <!-----//container--------->
+        <!--回頂部-->
+        <div id="gotop" class="gotop" title="點擊回到網頁上方"><span>回頂部</span></div>
+    </form>
+</body>
+</html>
